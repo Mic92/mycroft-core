@@ -31,6 +31,8 @@ class MozillaTTS(TTS):
         self.type = 'wav'
 
     def get_tts(self, sentence, wav_file):
+        if not sentence.endswith("."):
+            sentence += "."
         response = requests.get(self.url, params={'text': sentence})
         with open(wav_file, 'wb') as f:
             f.write(response.content)
